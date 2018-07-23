@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
+using Newtonsoft.Json.Linq;
+
 
 namespace AccesaEmployee
 {
@@ -51,6 +53,20 @@ namespace AccesaEmployee
             {
                 w.WriteElementString("Hobby", hob);
             }
+        }
+        public Employee(JObject r) { PropertyJ(r); }
+
+        public virtual void PropertyJ(JObject r)
+        {
+
+            var sb = new StringBuilder();
+            _hobbies.ForEach(x => sb.Append(x + " "));
+            r = new JObject(
+                new JProperty("Name", _name),
+                new JProperty("Capcity", _capacity),
+                new JProperty("Position", _position),
+                new JProperty("Hobby", sb.ToString()));
+
         }
         
         public virtual void DisplayInfo()

@@ -12,3 +12,6 @@ C:\Users\Catalin.Oant\Downloads\AccesaEmployee\AccesaEmployee\obj\Debug\AccesaEm
 C:\Users\Catalin.Oant\Downloads\AccesaEmployee\AccesaEmployee\obj\Debug\AccesaEmployee.csproj.CoreCompileInputs.cache
 C:\Users\Catalin.Oant\Downloads\AccesaEmployee\AccesaEmployee\obj\Debug\AccesaEmployee.exe
 C:\Users\Catalin.Oant\Downloads\AccesaEmployee\AccesaEmployee\obj\Debug\AccesaEmployee.pdb
+C:\Users\Catalin.Oant\Downloads\AccesaEmployee\AccesaEmployee\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Catalin.Oant\Downloads\AccesaEmployee\AccesaEmployee\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Catalin.Oant\Downloads\AccesaEmployee\AccesaEmployee\obj\Debug\AccesaEmployee.csproj.CopyComplete

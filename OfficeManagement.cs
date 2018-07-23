@@ -4,6 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
+using Newtonsoft.Json.Linq;
+using Newtonsoft.Json;
+using System.IO;
 
 namespace AccesaEmployee
 {
@@ -47,9 +50,9 @@ namespace AccesaEmployee
 		}
         public void ReadXml(XmlReader r)
         {
-            bool isEmpty = r.IsEmptyElement;           // This ensures we don't get  
-            r.ReadStartElement();                      // snookered by an empty  
-            if (isEmpty) return;                       // <contacts/> element!  
+            bool isEmpty = r.IsEmptyElement;           
+            r.ReadStartElement();                      
+            if (isEmpty) return;                       
             while (r.NodeType == XmlNodeType.Element)
             {  
                 if (r.Name == Employee.XmlName)
@@ -61,6 +64,14 @@ namespace AccesaEmployee
                     throw new XmlException ("Unexpected node: " + r.Name);
             }
             r.ReadEndElement();
+        }
+        public void Eloop()
+        {
+            using (StreamWriter file = File.CreateText(@"C:\Users\Catalin.Oant\Downloads\AccesaEmployee\json.txt"))
+            {
+                JsonSerializer serializer = new JsonSerializer();
+                serializer.Serialize(file, _employees);
+            }
         }
         public void Elool()
         {

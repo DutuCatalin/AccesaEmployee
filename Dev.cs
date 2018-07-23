@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
+using Newtonsoft.Json.Linq;
+
 
 namespace AccesaEmployee
 {
@@ -38,6 +40,15 @@ namespace AccesaEmployee
             foreach (string testingtool in TechnologyStack)
             {
                 _technologyStack = new List<string>() { r.ReadElementContentAsString("Technology stack", "") };
+            }
+        }
+
+        public override void PropertyJ(JObject r)
+        {
+            base.PropertyJ(r);
+            foreach (string techstack in TechnologyStack)
+            {
+                r = new JObject(new JProperty("Technology stack ", _technologyStack));
             }
         }
     }
