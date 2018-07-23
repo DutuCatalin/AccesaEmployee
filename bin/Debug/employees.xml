@@ -1,0 +1,23 @@
+﻿<Employees>
+  <employee>
+    <Name> Andrei</Name>
+    <Capacity>8.5</Capacity>
+    <Position>Intern</Position>
+    <Hobby>gaming</Hobby>
+    <Hobby>long hair</Hobby>
+    <Hobby> voluntariat</Hobby>
+  </employee>
+  <employee>
+    <Name>Dutu</Name>
+    <Capacity>8</Capacity>
+    <Position>DEV</Position>
+    <Hobby>joker</Hobby>
+    <Hobby> dancer</Hobby>
+  </employee>
+  <employee>
+    <Name>Daniel</Name>
+    <Capacity>8</Capacity>
+    <Position>QA</Position>
+    <Hobby>nu are</Hobby>
+  </employee>
+</Employees>
