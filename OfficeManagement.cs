@@ -64,7 +64,11 @@ namespace AccesaEmployee
         }
         public void Elool()
         {
-            using (XmlWriter w = XmlWriter.Create("employees.xml"))
+            XmlWriterSettings settings = new XmlWriterSettings();
+            settings.Indent = true;
+            settings.OmitXmlDeclaration = true;
+            settings.NewLineOnAttributes = true;
+            using (XmlWriter w = XmlWriter.Create("employees.xml", settings))
             {
                 w.WriteStartElement("Employees");
                 foreach (Employee c in _employees)
@@ -80,6 +84,7 @@ namespace AccesaEmployee
                     w.WriteEndElement();
                 }
                 w.WriteEndElement();
+
             }
         }
         public Project AddProject(string name, string description, DateTime deadLine)
