@@ -9,7 +9,7 @@ namespace AccesaEmployee
 {
 	public class QA:Employee
 	{
-		private readonly List<string> _testingTools = new List<string>();
+		private List<string> _testingTools = new List<string>();
 		public List<string> TestingTools => _testingTools ;
 		public QA(string name, float capacity) : base(name, EmployeePosition.QA, capacity)
 		{
@@ -17,7 +17,10 @@ namespace AccesaEmployee
         public override void WriteXml(XmlWriter w)
         {
             base.WriteXml(w);
-            w.WriteElementString("Testing tools", TestingTools.ToString());
+            foreach (string testingtool in TestingTools)
+            {
+                w.WriteElementString("Testing tools", testingtool);
+            }
         }
         public override void DisplayInfo()
 		{
@@ -29,7 +32,10 @@ namespace AccesaEmployee
         public override void ReadXml(XmlReader r)
         {
             base.ReadXml(r);
-
+            foreach (string testingtool in TestingTools)
+            {
+                _testingTools = new List<string>() { r.ReadElementContentAsString("Testing tools", "") };
+            }
         }
     }
 }

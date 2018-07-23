@@ -15,6 +15,8 @@ namespace AccesaEmployee
 
         public IReadOnlyCollection<Employee> Employees => _employees;
 		public IReadOnlyCollection<Project> Projects => _projects;
+
+
         
 		public Employee AddEmployee(string name, EmployeePosition position, float capacity, List<string> hobbies)
 		{
@@ -43,8 +45,44 @@ namespace AccesaEmployee
 			}
 			return employee;
 		}
-
-		public Project AddProject(string name, string description, DateTime deadLine)
+        public void ReadXml(XmlReader r)
+        {
+            bool isEmpty = r.IsEmptyElement;           // This ensures we don't get  
+            r.ReadStartElement();                      // snookered by an empty  
+            if (isEmpty) return;                       // <contacts/> element!  
+            while (r.NodeType == XmlNodeType.Element)
+            {  
+                if (r.Name == Employee.XmlName)
+                    _employees.Add (new Employee (r));
+                else 
+                if (r.Name == Project.XmlName)
+                    _projects.Add (new Project (r));
+                else
+                    throw new XmlException ("Unexpected node: " + r.Name);
+            }
+            r.ReadEndElement();
+        }
+        public void Elool()
+        {
+            using (XmlWriter w = XmlWriter.Create("employees.xml"))
+            {
+                w.WriteStartElement("Employees");
+                foreach (Employee c in _employees)
+                {
+                    w.WriteStartElement(Employee.XmlName);
+                    c.WriteXml(w);
+                    w.WriteEndElement();
+                }
+                foreach (Project s in _projects)
+                {
+                    w.WriteStartElement(Project.XmlName);
+                    s.WriteXml(w);
+                    w.WriteEndElement();
+                }
+                w.WriteEndElement();
+            }
+        }
+        public Project AddProject(string name, string description, DateTime deadLine)
 		{
 			var project = new Project(name, description, deadLine);
 			_projects.Add(project);

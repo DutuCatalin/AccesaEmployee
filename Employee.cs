@@ -7,12 +7,13 @@ using System.Xml;
 
 namespace AccesaEmployee
 {
-	public abstract class Employee
+	public  class Employee
 	{
 		private string _name;
 		private EmployeePosition _position;
 		private float _capacity;//max number of hours per day
 		private List<string> _hobbies=new List<string>();
+        public const string XmlName = "employee";
 
 		public string Name => _name;
 		public EmployeePosition Position => _position;
@@ -26,16 +27,9 @@ namespace AccesaEmployee
 			_capacity = capacity;
 		}
         public Employee(XmlReader r) { ReadXml(r); }
-        public virtual void WriteXml(XmlWriter w)
-        {
-            w.WriteElementString("Name", Name);
-            w.WriteElementString("Capacity", Capacity.ToString());
-            w.WriteElementString("Position", Position.ToString());
-            foreach (string hob in Hobbies)
-            {
-                w.WriteElementString("Hobby", hob);
-            }
-        }
+
+        public Employee() { }
+
         public virtual void ReadXml(XmlReader r)
         {
             r.ReadStartElement();
@@ -48,7 +42,16 @@ namespace AccesaEmployee
             }
             r.ReadEndElement();
         }
-        
+        public virtual void WriteXml(XmlWriter w)
+        {
+            w.WriteElementString("Name", Name);
+            w.WriteElementString("Capacity", Capacity.ToString());
+            w.WriteElementString("Position", Position.ToString());
+            foreach (string hob in Hobbies)
+            {
+                w.WriteElementString("Hobby", hob);
+            }
+        }
         
         public virtual void DisplayInfo()
 		{

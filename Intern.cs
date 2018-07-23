@@ -19,5 +19,6 @@ namespace AccesaEmployee
 			: base(name, EmployeePosition.Intern, capacity)
 		{
 		}
+
 	}
 }

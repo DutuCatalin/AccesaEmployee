@@ -13,6 +13,7 @@ namespace AccesaEmployee
 		private string _description;
 		private DateTime _deadLine;
 		private Dictionary<Employee, float> _team = new Dictionary<Employee, float>();
+        public const string XmlName = "project";
 
 		public string Name => _name;
 		public string Description => _description;
