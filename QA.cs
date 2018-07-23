@@ -10,7 +10,7 @@ namespace AccesaEmployee
 	public class QA:Employee
 	{
 		private readonly List<string> _testingTools = new List<string>();
-		public List<string> TestingTools => _testingTools;
+		public List<string> TestingTools => _testingTools ;
 		public QA(string name, float capacity) : base(name, EmployeePosition.QA, capacity)
 		{
 		}
