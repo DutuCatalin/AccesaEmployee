@@ -17,20 +17,18 @@ namespace AccesaEmployee
 		static void Main(string[] args)
 		{
 			var officeManagement= new OfficeManagement();
-			/*officeManagement.DisplayAllProjects();
+            var officeManagement1 = new OfficeManagement();
+            var officeManagement2 = new OfficeManagement();
+            var ds = new DataContractSerializer(typeof(OfficeManagement));
+            /*officeManagement.DisplayAllProjects();
 
 			officeManagement.DeleteEmployee(dev);
 			officeManagement.DisplayAllEmployees();
 			officeManagement.DisplayAllProjects();*/
 
-			PopulateEmployeeList(officeManagement);
+            PopulateEmployeeList(officeManagement);
 			officeManagement.DisplayAllEmployees();
-            using (StreamWriter file = File.CreateText(@"C:\Users\Catalin.Oant\Downloads\AccesaEmployee\AccesaEmployee\bin\Debug\json.txt"))
-            {
-                JsonSerializer serializer = new JsonSerializer();
-                serializer.Serialize(file, officeManagement);
-            }
-            var ds = new DataContractSerializer(typeof(OfficeManagement));
+            
             XmlWriterSettings settings = new XmlWriterSettings();
             settings.Indent = true;
             settings.OmitXmlDeclaration = true;
@@ -39,8 +37,26 @@ namespace AccesaEmployee
             {
                 ds.WriteObject(w, officeManagement);
             }
+            using (Stream s = File.OpenRead("xmlfile.xml"))
+            {
+                officeManagement1 = (OfficeManagement)ds.ReadObject(s);
+            }
+            PopulateEmployeeList(officeManagement1);
+            officeManagement1.DisplayAllEmployees();
 
-                Console.ReadLine();
+            using (StreamWriter file = File.CreateText(@"C:\Users\Catalin.Oant\Downloads\AccesaEmployee\AccesaEmployee\bin\Debug\json.txt"))
+            {
+                JsonSerializer serializer = new JsonSerializer();
+                serializer.Serialize(file, officeManagement);
+            }
+            using (Stream s = File.OpenRead(@"C:\Users\Catalin.Oant\Downloads\AccesaEmployee\AccesaEmployee\bin\Debug\json.txt"))
+            {
+                officeManagement2 = (OfficeManagement)ds.ReadObject(s);
+            }
+            PopulateEmployeeList(officeManagement2);
+            officeManagement2.DisplayAllEmployees();
+
+            Console.ReadLine();
 
         }
 
