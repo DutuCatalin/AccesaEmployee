@@ -3,14 +3,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Runtime.Serialization;
+using Newtonsoft.Json.Linq;
+using Newtonsoft.Json;
 
 namespace AccesaEmployee
 {
-	public class Intern:Employee
+    [DataContract]
+    public class Intern:Employee
 	{
-		private string _universityName;
-		private int _yearOfStudy;
-		private EmployeePosition _targetPosition;
+        [DataMember]
+        private readonly string _universityName;
+        [DataMember]
+        private readonly int _yearOfStudy;
+        [DataMember]
+        private readonly EmployeePosition _targetPosition;
 
 		public string UniversityName => _universityName;
 		public int YearOfStudy => _yearOfStudy;
@@ -19,6 +26,11 @@ namespace AccesaEmployee
 			: base(name, EmployeePosition.Intern, capacity)
 		{
 		}
+        public override void DisplayInfo()
+        {
+            base.DisplayInfo();
+            Console.WriteLine($"University : {_universityName} \nYear: {_yearOfStudy} \nTarget position : {_targetPosition}");
+        }
 
-	}
+    }
 }

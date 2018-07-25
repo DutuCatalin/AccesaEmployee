@@ -5,17 +5,21 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
 using Newtonsoft.Json.Linq;
-
+using System.Runtime.Serialization;
 
 namespace AccesaEmployee
 {
+    [DataContract , KnownType(typeof(Intern)), KnownType (typeof(QA)), KnownType(typeof(Dev))]
 	public  class Employee
 	{
-		private string _name;
-		private EmployeePosition _position;
-		private float _capacity;//max number of hours per day
-		private List<string> _hobbies=new List<string>();
-        public const string XmlName = "employee";
+        [DataMember]
+		private readonly string _name;
+        [DataMember]
+		private readonly EmployeePosition _position;
+        [DataMember]
+        private readonly float _capacity;//max number of hours per day
+        [DataMember]
+        private readonly List<string> _hobbies=new List<string>();
 
 		public string Name => _name;
 		public EmployeePosition Position => _position;
@@ -28,46 +32,6 @@ namespace AccesaEmployee
 			_position = position;
 			_capacity = capacity;
 		}
-        public Employee(XmlReader r) { ReadXml(r); }
-
-        public Employee() { }
-
-        public virtual void ReadXml(XmlReader r)
-        {
-            r.ReadStartElement();
-            _name = r.ReadElementContentAsString("name", "");
-            _position = (EmployeePosition)r.ReadElementContentAsObject("position", "");
-            _capacity = r.ReadElementContentAsFloat("capacity", "");
-            foreach (string hob in _hobbies)
-            {
-                _hobbies = new List<string>() { r.ReadElementContentAsString("hobbie", "") };
-            }
-            r.ReadEndElement();
-        }
-        public virtual void WriteXml(XmlWriter w)
-        {
-            w.WriteElementString("Name", Name);
-            w.WriteElementString("Capacity", Capacity.ToString());
-            w.WriteElementString("Position", Position.ToString());
-            foreach (string hob in Hobbies)
-            {
-                w.WriteElementString("Hobby", hob);
-            }
-        }
-        public Employee(JObject r) { PropertyJ(r); }
-
-        public virtual void PropertyJ(JObject r)
-        {
-
-            var sb = new StringBuilder();
-            _hobbies.ForEach(x => sb.Append(x + " "));
-            r = new JObject(
-                new JProperty("Name", _name),
-                new JProperty("Capcity", _capacity),
-                new JProperty("Position", _position),
-                new JProperty("Hobby", sb.ToString()));
-
-        }
         
         public virtual void DisplayInfo()
 		{

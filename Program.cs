@@ -5,6 +5,10 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml;
+using Newtonsoft.Json.Linq;
+using Newtonsoft.Json;
+using System.Runtime.Serialization;
 
 namespace AccesaEmployee
 {
@@ -21,10 +25,24 @@ namespace AccesaEmployee
 
 			PopulateEmployeeList(officeManagement);
 			officeManagement.DisplayAllEmployees();
-			Console.ReadLine();
-            officeManagement.Elool();
-            officeManagement.Eloop();
-		}
+            using (StreamWriter file = File.CreateText(@"C:\Users\Catalin.Oant\Downloads\AccesaEmployee\AccesaEmployee\bin\Debug\json.txt"))
+            {
+                JsonSerializer serializer = new JsonSerializer();
+                serializer.Serialize(file, officeManagement);
+            }
+            var ds = new DataContractSerializer(typeof(OfficeManagement));
+            XmlWriterSettings settings = new XmlWriterSettings();
+            settings.Indent = true;
+            settings.OmitXmlDeclaration = true;
+            settings.NewLineOnAttributes = true;
+            using (XmlWriter w = XmlWriter.Create("xmlfile.xml", settings))
+            {
+                ds.WriteObject(w, officeManagement);
+            }
+
+                Console.ReadLine();
+
+        }
 
 		private static void PopulateEmployeeList(OfficeManagement officeManagement)
 		{

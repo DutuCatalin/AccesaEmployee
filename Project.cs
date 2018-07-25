@@ -5,17 +5,22 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
 using Newtonsoft.Json.Linq;
+using System.Runtime.Serialization;
 
 
 namespace AccesaEmployee
 {
+    [DataContract]
 	public class Project
 	{
-		private string _name;
-		private string _description;
-		private DateTime _deadLine;
-		private Dictionary<Employee, float> _team = new Dictionary<Employee, float>();
-        public const string XmlName = "project";
+        [DataMember]
+		private readonly string _name;
+        [DataMember]
+        private readonly string _description;
+        [DataMember]
+        private readonly DateTime _deadLine;
+        [DataMember]
+        private readonly Dictionary<Employee, float> _team = new Dictionary<Employee, float>();
 
 		public string Name => _name;
 		public string Description => _description;
@@ -28,26 +33,6 @@ namespace AccesaEmployee
 			_description = description;
 			_deadLine = deadLine;
 		}
-
-        public Project(XmlReader r) { ReadXml(r); }
-        public virtual void ReadXml(XmlReader r)
-        {
-            r.ReadStartElement();
-            _name = r.ReadElementContentAsString("name", "");
-            _description = r.ReadElementContentAsString("description", "");
-            _deadLine = Convert.ToDateTime(r.ReadElementContentAsString("deadLine", ""));
-            foreach (var teamMember in _team)
-            {
-            }
-            r.ReadEndElement();
-        }
-        public void WriteXml(XmlWriter w)
-        {
-            w.WriteElementString("Name", Name);
-            w.WriteElementString("Description", Description);
-            w.WriteElementString("DeadLine", DeadLine.ToString());
-
-        }
 
         public void DisplayInfo()
 		{

@@ -1,0 +1,1 @@
+{"_employees":[{"_universityName":null,"_yearOfStudy":0,"_targetPosition":0,"_name":" Andrei","_position":3,"_capacity":8.5,"_hobbies":["gaming","long hair"," voluntariat"]},{"_technologyStack":[],"_name":"Dutu","_position":1,"_capacity":8.0,"_hobbies":["joker"," dancer"]},{"_testingTools":[],"_name":"Daniel","_position":2,"_capacity":8.0,"_hobbies":["nu are"]}],"_projects":[]}

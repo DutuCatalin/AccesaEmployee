@@ -7,13 +7,16 @@ using System.Xml;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json;
 using System.IO;
+using System.Runtime.Serialization;
 
 namespace AccesaEmployee
 {
-    
+    [DataContract]
 	public class OfficeManagement
 	{
+        [DataMember]
 		private readonly List<Employee> _employees = new List<Employee>();
+        [DataMember]
 		private readonly List<Project> _projects = new List<Project>();
 
         public IReadOnlyCollection<Employee> Employees => _employees;
@@ -48,56 +51,6 @@ namespace AccesaEmployee
 			}
 			return employee;
 		}
-        public void ReadXml(XmlReader r)
-        {
-            bool isEmpty = r.IsEmptyElement;           
-            r.ReadStartElement();                      
-            if (isEmpty) return;                       
-            while (r.NodeType == XmlNodeType.Element)
-            {  
-                if (r.Name == Employee.XmlName)
-                    _employees.Add (new Employee (r));
-                else 
-                if (r.Name == Project.XmlName)
-                    _projects.Add (new Project (r));
-                else
-                    throw new XmlException ("Unexpected node: " + r.Name);
-            }
-            r.ReadEndElement();
-        }
-        public void Eloop()
-        {
-            using (StreamWriter file = File.CreateText(@"C:\Users\Catalin.Oant\Downloads\AccesaEmployee\json.txt"))
-            {
-                JsonSerializer serializer = new JsonSerializer();
-                serializer.Serialize(file, _employees);
-            }
-        }
-        public void Elool()
-        {
-            XmlWriterSettings settings = new XmlWriterSettings();
-            settings.Indent = true;
-            settings.OmitXmlDeclaration = true;
-            settings.NewLineOnAttributes = true;
-            using (XmlWriter w = XmlWriter.Create("employees.xml", settings))
-            {
-                w.WriteStartElement("Employees");
-                foreach (Employee c in _employees)
-                {
-                    w.WriteStartElement(Employee.XmlName);
-                    c.WriteXml(w);
-                    w.WriteEndElement();
-                }
-                foreach (Project s in _projects)
-                {
-                    w.WriteStartElement(Project.XmlName);
-                    s.WriteXml(w);
-                    w.WriteEndElement();
-                }
-                w.WriteEndElement();
-
-            }
-        }
         public Project AddProject(string name, string description, DateTime deadLine)
 		{
 			var project = new Project(name, description, deadLine);

@@ -1,0 +1,41 @@
+﻿<OfficeManagement xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.datacontract.org/2004/07/AccesaEmployee">
+  <_employees>
+    <Employee
+      i:type="Intern">
+      <_capacity>8.5</_capacity>
+      <_hobbies xmlns:d4p1="http://schemas.microsoft.com/2003/10/Serialization/Arrays">
+        <d4p1:string>gaming</d4p1:string>
+        <d4p1:string>long hair</d4p1:string>
+        <d4p1:string> voluntariat</d4p1:string>
+      </_hobbies>
+      <_name> Andrei</_name>
+      <_position>Intern</_position>
+      <_targetPosition>HR</_targetPosition>
+      <_universityName
+        i:nil="true" />
+      <_yearOfStudy>0</_yearOfStudy>
+    </Employee>
+    <Employee
+      i:type="Dev">
+      <_capacity>8</_capacity>
+      <_hobbies xmlns:d4p1="http://schemas.microsoft.com/2003/10/Serialization/Arrays">
+        <d4p1:string>joker</d4p1:string>
+        <d4p1:string> dancer</d4p1:string>
+      </_hobbies>
+      <_name>Dutu</_name>
+      <_position>DEV</_position>
+      <_technologyStack xmlns:d4p1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+    </Employee>
+    <Employee
+      i:type="QA">
+      <_capacity>8</_capacity>
+      <_hobbies xmlns:d4p1="http://schemas.microsoft.com/2003/10/Serialization/Arrays">
+        <d4p1:string>nu are</d4p1:string>
+      </_hobbies>
+      <_name>Daniel</_name>
+      <_position>QA</_position>
+      <_testingTools xmlns:d4p1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+    </Employee>
+  </_employees>
+  <_projects />
+</OfficeManagement>
