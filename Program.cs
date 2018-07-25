@@ -41,7 +41,6 @@ namespace AccesaEmployee
             {
                 officeManagement1 = (OfficeManagement)ds.ReadObject(s);
             }
-            PopulateEmployeeList(officeManagement1);
             officeManagement1.DisplayAllEmployees();
 
             using (StreamWriter file = File.CreateText(@"C:\Users\Catalin.Oant\Downloads\AccesaEmployee\AccesaEmployee\bin\Debug\json.txt"))
@@ -49,12 +48,12 @@ namespace AccesaEmployee
                 JsonSerializer serializer = new JsonSerializer();
                 serializer.Serialize(file, officeManagement);
             }
-            using (Stream s = File.OpenRead(@"C:\Users\Catalin.Oant\Downloads\AccesaEmployee\AccesaEmployee\bin\Debug\json.txt"))
-            {
-                officeManagement2 = (OfficeManagement)ds.ReadObject(s);
-            }
-            PopulateEmployeeList(officeManagement2);
-            officeManagement2.DisplayAllEmployees();
+            //using (Stream s = File.OpenRead(@"C:\Users\Catalin.Oant\Downloads\AccesaEmployee\AccesaEmployee\bin\Debug\json.txt"))
+            //{
+            //    officeManagement2 = (OfficeManagement)ds.ReadObject(s);
+            //}
+            //PopulateEmployeeList(officeManagement2);
+            //officeManagement2.DisplayAllEmployees();
 
             Console.ReadLine();
 
